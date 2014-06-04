@@ -1,3 +1,4 @@
+#require "tinymce"
 require "blorgh/engine"
 
 module Blorgh
