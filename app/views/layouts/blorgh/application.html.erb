@@ -4,7 +4,7 @@
   <title>Blorgh</title>
   <%= stylesheet_link_tag    "blorgh/application", media: "all" %>
   <%= stylesheet_link_tag    "blorgh/scaffold" %>
-  <%#= javascript_include_tag "blorgh/application" %>
+  <%= javascript_include_tag "blorgh/application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,4 +12,5 @@
 <%= yield %>
 
 </body>
+<%= tinymce %>
 </html>

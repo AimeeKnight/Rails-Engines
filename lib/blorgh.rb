@@ -1,5 +1,5 @@
-#require "tinymce"
 require "blorgh/engine"
+require 'tinymce-rails'
 
 module Blorgh
   mattr_accessor :author_class
