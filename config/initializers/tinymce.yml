@@ -1,19 +1,17 @@
 default:
   selector: textarea#post
-  toolbar: styleselect | bold italic | link image | undo redo | table | uploadimage
+  toolbar: styleselect | bold italic | link image | undo redo | table
   plugins:
     - table
     - emotions
     - image
     - link
-    - uploadimage
     - style
 
 alternate:
   selector: textarea.tinymce
-  toolbar: styleselect | bold italic | link image | undo redo | table | uploadimage
+  toolbar: styleselect | bold italic | link image | undo redo | table
   plugins:
     - table
     - emotions
     - style
-    - uploadimage
