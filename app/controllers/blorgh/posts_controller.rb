@@ -3,7 +3,7 @@ require_dependency "blorgh/application_controller"
 module Blorgh
   class PostsController < ApplicationController
     before_action :set_post,               only: [:show, :edit, :update, :destroy]
-    before_action :can_user_create_posts?, only: [:new, :edit, :update, :destroy]
+    # before_action :can_user_create_posts?, only: [:new, :edit, :update, :destroy]
     # before_action :correct_user,           only: :destroy
 
     # GET /posts
@@ -51,9 +51,9 @@ module Blorgh
     end
 
     private
-      def can_user_create_posts?
-        redirect_to root_url unless user.try(:author?)
-      end
+      #def can_user_create_posts?
+       # redirect_to root_url unless current_user.author?
+      #end
 
       #def correct_user
        # @post = current_user.posts.find_by_id(params[:id])
