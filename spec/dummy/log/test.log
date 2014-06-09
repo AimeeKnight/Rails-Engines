@@ -37,3 +37,450 @@ Migrating to CreateBlorghImages (20140607172104)
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140607172104"]]
   [1m[36m (45.7ms)[0m  [1mcommit transaction[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (100.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (11.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateBlorghPosts (20140603022951)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "blorgh_posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "text" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140603022951"]]
+  [1m[35m (3.6ms)[0m  commit transaction
+Migrating to CreateBlorghComments (20140603031024)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "blorgh_comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "text" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140603031024"]]
+  [1m[35m (3.3ms)[0m  commit transaction
+Migrating to CreateBlorghUsers (20140603181712)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "blorgh_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140603181712"]]
+  [1m[35m (3.0ms)[0m  commit transaction
+Migrating to AddAuthorIdToBlorghPosts (20140603183104)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "blorgh_posts" ADD "author_id" integer
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140603183104"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+Migrating to CreateTableUsers (20140607012839)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140607012839"]]
+  [1m[35m (2.9ms)[0m  commit transaction
+Migrating to RemoveColumn (20140607165842)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140607165842"]]
+  [1m[36m (2.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateBlorghImages (20140607172104)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddImageToBlorghPosts (20140607223441)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "blorgh_posts" ADD "image" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140607223441"]]
+  [1m[36m (48.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Started GET "/blog" for 127.0.0.1 at 2014-06-08 12:54:32 -0500
+Started GET "/blorgh" for 127.0.0.1 at 2014-06-08 12:57:46 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (4.9ms)
+Completed 200 OK in 3612ms (Views: 3611.1ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 12:57:49 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (83.4ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (103.6ms)
+Completed 200 OK in 111ms (Views: 110.5ms | ActiveRecord: 0.0ms)
+Started GET "/blorgh" for 127.0.0.1 at 2014-06-08 13:01:15 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.6ms)
+Completed 200 OK in 46ms (Views: 45.2ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:01:15 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (20.7ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (24.0ms)
+Completed 200 OK in 30ms (Views: 29.4ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh" for 127.0.0.1 at 2014-06-08 13:01:34 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.5ms)
+Completed 200 OK in 35ms (Views: 34.8ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:01:34 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (17.4ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (20.5ms)
+Completed 200 OK in 26ms (Views: 25.9ms | ActiveRecord: 0.0ms)
+Started GET "/blorgh" for 127.0.0.1 at 2014-06-08 13:10:57 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.3ms)
+Completed 200 OK in 37ms (Views: 36.2ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:10:57 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (17.7ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (21.2ms)
+Completed 200 OK in 27ms (Views: 26.6ms | ActiveRecord: 0.0ms)
+Started GET "/blorgh" for 127.0.0.1 at 2014-06-08 13:11:44 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.5ms)
+Completed 200 OK in 36ms (Views: 35.0ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 13:20:08 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.0ms)
+Completed 200 OK in 41ms (Views: 40.1ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:20:08 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (21.2ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (24.4ms)
+Completed 200 OK in 31ms (Views: 29.8ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 13:21:58 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.7ms)
+Completed 200 OK in 37ms (Views: 36.5ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:21:58 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (17.6ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (20.9ms)
+Completed 200 OK in 27ms (Views: 26.5ms | ActiveRecord: 0.0ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 13:22:44 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.8ms)
+Completed 200 OK in 37ms (Views: 36.1ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:22:44 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (17.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (20.2ms)
+Completed 200 OK in 26ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 13:24:13 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.5ms)
+Completed 200 OK in 38ms (Views: 37.0ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:24:13 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (21.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (24.2ms)
+Completed 200 OK in 31ms (Views: 29.8ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 13:26:17 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.6ms)
+Completed 200 OK in 39ms (Views: 37.5ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/posts/new" for 127.0.0.1 at 2014-06-08 13:26:17 -0500
+Processing by Blorgh::PostsController#new as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/_form.html.erb (21.2ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/new.html.erb within layouts/blorgh/application (24.5ms)
+Completed 200 OK in 31ms (Views: 29.9ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 13:28:14 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.0ms)
+Completed 200 OK in 36ms (Views: 35.8ms | ActiveRecord: 0.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddNameToUsers (20140608212814)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD "name" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140608212814"]]
+  [1m[36m (38.4ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 16:44:39 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.9ms)
+Completed 200 OK in 38ms (Views: 37.3ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 16:52:52 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.9ms)
+Completed 200 OK in 37ms (Views: 37.0ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 18:55:28 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 38ms (Views: 37.0ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 18:58:47 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (4.0ms)
+Completed 200 OK in 38ms (Views: 37.6ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:23:11 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (4.0ms)
+Completed 200 OK in 38ms (Views: 38.0ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:28:59 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (5.8ms)
+Completed 200 OK in 46ms (Views: 45.5ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:29:09 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.9ms)
+Completed 200 OK in 38ms (Views: 37.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:30:09 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.9ms)
+Completed 200 OK in 37ms (Views: 36.5ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:35:15 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (5.9ms)
+Completed 200 OK in 46ms (Views: 45.3ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:35:15 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.4ms)
+Completed 200 OK in 6ms (Views: 6.2ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 19:35:15 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (32.8ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (99.3ms)
+Completed 200 OK in 106ms (Views: 104.1ms | ActiveRecord: 1.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:52:21 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.9ms)
+Completed 200 OK in 37ms (Views: 36.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:52:22 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.6ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 19:52:22 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.5ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (39.5ms)
+Completed 200 OK in 47ms (Views: 44.7ms | ActiveRecord: 0.9ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:52:22 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (0.8ms)
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:53:11 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 37ms (Views: 36.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:53:11 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.5ms)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 19:53:11 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (16.2ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (40.1ms)
+Completed 200 OK in 47ms (Views: 45.2ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:53:11 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (0.7ms)
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:53:34 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 37ms (Views: 36.9ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 19:53:34 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.6ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (38.1ms)
+Completed 200 OK in 44ms (Views: 42.8ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:53:34 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (0.7ms)
+Completed 200 OK in 6ms (Views: 6.0ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:53:34 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.6ms)
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:54:50 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 37ms (Views: 36.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 19:54:50 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (16.2ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (38.9ms)
+Completed 200 OK in 45ms (Views: 43.6ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:54:50 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.6ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:55:48 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.7ms)
+Completed 200 OK in 37ms (Views: 36.7ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:55:48 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.9ms)
+Completed 200 OK in 8ms (Views: 7.7ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 19:55:48 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.6ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (37.7ms)
+Completed 200 OK in 44ms (Views: 42.4ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:59:04 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (4.2ms)
+Completed 200 OK in 38ms (Views: 37.7ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 19:59:04 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.4ms)
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 19:59:04 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (16.7ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (41.7ms)
+Completed 200 OK in 50ms (Views: 47.4ms | ActiveRecord: 0.9ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:03:11 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.9ms)
+Completed 200 OK in 38ms (Views: 37.2ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:03:12 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.6ms)
+Completed 200 OK in 7ms (Views: 7.0ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:03:12 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.7ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (44.9ms)
+Completed 200 OK in 52ms (Views: 49.8ms | ActiveRecord: 0.9ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:04:54 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 38ms (Views: 37.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:04:55 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.4ms)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:04:55 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (16.1ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (40.6ms)
+Completed 200 OK in 48ms (Views: 45.8ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:07:52 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 37ms (Views: 36.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:07:52 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.6ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:07:52 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (16.2ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (53.3ms)
+Completed 200 OK in 59ms (Views: 57.6ms | ActiveRecord: 1.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:13:09 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 38ms (Views: 37.9ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:13:09 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.7ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (37.8ms)
+Completed 200 OK in 44ms (Views: 42.8ms | ActiveRecord: 0.6ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:13:09 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.5ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:14:01 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 37ms (Views: 36.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:14:01 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.9ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (38.4ms)
+Completed 200 OK in 45ms (Views: 43.7ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:14:01 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.1ms)
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.2ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:15:20 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 38ms (Views: 37.6ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:15:20 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.5ms)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:15:20 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.7ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (39.5ms)
+Completed 200 OK in 46ms (Views: 44.7ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:16:12 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 42ms (Views: 40.9ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:16:12 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.5ms)
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:16:12 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.7ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (40.2ms)
+Completed 200 OK in 48ms (Views: 45.5ms | ActiveRecord: 0.9ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:19:17 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.9ms)
+Completed 200 OK in 37ms (Views: 36.9ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:19:17 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.9ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (39.3ms)
+Completed 200 OK in 46ms (Views: 44.5ms | ActiveRecord: 0.8ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:19:17 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.5ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:19:17 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (2.0ms)
+Completed 200 OK in 8ms (Views: 7.9ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:25:38 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (4.8ms)
+Completed 200 OK in 43ms (Views: 42.9ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:25:38 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.5ms)
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:25:38 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (16.3ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (39.4ms)
+Completed 200 OK in 46ms (Views: 44.7ms | ActiveRecord: 0.7ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:25:38 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.4ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:27:19 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (3.8ms)
+Completed 200 OK in 38ms (Views: 37.4ms | ActiveRecord: 0.1ms)
+Started GET "/blorgh/posts/1" for 127.0.0.1 at 2014-06-08 20:27:19 -0500
+Processing by Blorgh::PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered collection (0.0ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/comments/_form.html.erb (15.4ms)
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/show.html.erb within layouts/blorgh/application (37.3ms)
+Completed 200 OK in 43ms (Views: 42.2ms | ActiveRecord: 0.6ms)
+Started GET "/blorgh/" for 127.0.0.1 at 2014-06-08 20:27:20 -0500
+Processing by Blorgh::PostsController#index as HTML
+  Rendered /Users/aimeeknight/Desktop/Projects/blorgh/app/views/blorgh/posts/index.html.erb within layouts/blorgh/application (1.6ms)
+Completed 200 OK in 11ms (Views: 10.5ms | ActiveRecord: 0.1ms)

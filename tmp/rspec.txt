@@ -3,10 +3,18 @@ Run options: include {:focused=>true}
 All examples were filtered out; ignoring {:focused=>true}
 
 Blorgh::Post
+[32m  belongs to an author[0m
+[32m  has many comments[0m
 [32m  has a title[0m
 
-Finished in 0.04933 seconds (files took 1.59 seconds to load)
-[32m1 example, 0 failures[0m
+User views a single post
+[32m  views an single post show page[0m
 
-Randomized with seed 39716
+User views posts
+[32m  views an index page of posts[0m
+
+Finished in 0.29443 seconds (files took 1.61 seconds to load)
+[32m5 examples, 0 failures[0m
+
+Randomized with seed 61435
 
