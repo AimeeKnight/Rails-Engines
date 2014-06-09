@@ -1,4 +1,4 @@
-module Blorgh
-  class User < ActiveRecord::Base
-  end
-end
+# module Blorgh
+#   class User < ActiveRecord::Base
+#   end
+# end

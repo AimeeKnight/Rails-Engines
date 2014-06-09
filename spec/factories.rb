@@ -1,11 +1,17 @@
 FactoryGirl.define do
-  factory :author, class: Blorgh::User do
-    sequence(:name)  { |n| "Person #{n}" }
+  factory :author, class: User do
+    #sequence(:name)  { |n| "Person #{n}" }
+    sequence(:email) { |n| "person_#{n}@example.com"}
+    password "1231kjhkjh23"
+    password_confirmation { "1231kjhkjh23" }
   end
 
-  factory :user, class: Blorgh::User do
-    sequence(:name)  { |n| "Person #{n}" }
-  end
+  # factory :user do
+  #   #sequence(:name)  { |n| "Person #{n}" }
+  #   sequence(:email) { |n| "person_#{n}@example.com"}
+  #   password "1231kjhkjh23"
+  #   password_confirmation { "1231kjhkjh23" }
+  # end
 
   factory :post, class: Blorgh::Post do
     title   "Test Title"
