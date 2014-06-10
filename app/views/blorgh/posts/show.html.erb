@@ -2,7 +2,7 @@
 
 <p>
   <b>Author</b>
-  <%= @post.author %>
+  <%= @post.author.by_line %>
 </p>
 
 <p>
@@ -22,7 +22,6 @@
 
 <h3>Comments</h3>
 <%= render @post.comments %>
-
 <%= render "blorgh/comments/form" %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

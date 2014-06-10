@@ -1,5 +1,5 @@
 module Blorgh
   class ApplicationController < ::ApplicationController
-    #layout 'layouts/application' 
+    #layout 'layouts/application'
   end
 end

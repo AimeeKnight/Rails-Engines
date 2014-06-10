@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Author</th>
       <th>Text</th>
       <th></th>
       <th></th>
@@ -15,6 +16,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
+        <td><%= post.author.by_line %></td>
         <td><%=raw post.text %></td>
         <td><%=image_tag post.image_url(:thumb).to_s %></td>
         <td><%= link_to 'Show', post %></td>

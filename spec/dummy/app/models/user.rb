@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
     true
   end
 
-  def name
+  def by_line
     email
   end
 end
