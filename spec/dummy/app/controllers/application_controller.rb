@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # return rspecs constant
   def current_user
     CURRENT_CONFIG[:current_user]
   end
